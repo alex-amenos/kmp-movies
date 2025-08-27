@@ -1,18 +1,31 @@
+# IDE files
+.idea
 *.iml
-.kotlin
+.DS_Store
+
+# Gradle files
 .gradle
 **/build/
-xcuserdata
 !src/**/build/
 local.properties
-.idea
-.DS_Store
-captures
+
+# Kotlin files
+.kotlin
+
+# Native build files
 .externalNativeBuild
 .cxx
+
+# Xcode project files (for cross-platform projects)
 *.xcodeproj/*
 !*.xcodeproj/project.pbxproj
 !*.xcodeproj/xcshareddata/
 !*.xcodeproj/project.xcworkspace/
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
+
+# Android Studio run configurations
+*.run/
+
+# Miscellaneous
+captures
