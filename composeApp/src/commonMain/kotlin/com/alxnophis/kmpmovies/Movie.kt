@@ -3,7 +3,7 @@ package com.alxnophis.kmpmovies
 data class Movie(
     val id: Int,
     val title: String,
-    val poster: String,
+    val posterUrl: String,
 )
 
 val movies: List<Movie> =
@@ -11,6 +11,6 @@ val movies: List<Movie> =
         Movie(
             id = it,
             title = "Movie $it",
-            poster = "https://picsum.photos/200/300?random=$it",
+            posterUrl = "https://picsum.photos/200/300?random=$it",
         )
     }
