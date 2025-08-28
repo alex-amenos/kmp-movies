@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.alxnophis.kmpmovies.Movie
 import com.alxnophis.kmpmovies.movies
+import com.alxnophis.kmpmovies.ui.screens.Screen
 import kmpmovies.composeapp.generated.resources.Res
 import kmpmovies.composeapp.generated.resources.app_name
 import org.jetbrains.compose.resources.stringResource
@@ -35,7 +36,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Composable
 @Preview
 fun HomeScreen() {
-    _root_ide_package_.com.alxnophis.kmpmovies.ui.screens.Screen(modifier = Modifier.fillMaxSize()) {
+    Screen(modifier = Modifier.fillMaxSize()) {
         val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
         Scaffold(
             topBar = {
