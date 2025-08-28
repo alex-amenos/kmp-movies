@@ -1,84 +1,24 @@
 package com.alxnophis.kmpmovies
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawingPadding
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.unit.dp
 import coil3.ImageLoader
-import coil3.compose.AsyncImage
 import coil3.compose.setSingletonImageLoaderFactory
 import coil3.request.crossfade
 import coil3.util.DebugLogger
+import com.alxnophis.kmpmovies.ui.screens.home.HomeScreen
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @Preview
 fun App() {
-    MaterialTheme {
-        setSingletonImageLoaderFactory { context ->
-            ImageLoader
-                .Builder(context)
-                .crossfade(true)
-                .logger(if (AppConfig.isDebug) DebugLogger() else null)
-                .build()
-        }
-        Surface(
-            modifier =
-                Modifier
-                    .fillMaxSize()
-                    .safeDrawingPadding(),
-        ) {
-            LazyVerticalGrid(
-                columns = GridCells.Adaptive(120.dp),
-                contentPadding = PaddingValues(4.dp),
-                horizontalArrangement = Arrangement.spacedBy(4.dp),
-                verticalArrangement = Arrangement.spacedBy(4.dp),
-            ) {
-                items(
-                    items = movies,
-                    key = { it.id },
-                ) {
-                    MovieItem(movie = it)
-                }
-            }
-        }
+    setSingletonImageLoaderFactory { context ->
+        ImageLoader
+            .Builder(context)
+            .crossfade(true)
+            .logger(if (AppConfig.isDebug) DebugLogger() else null)
+            .build()
     }
-}
-
-@Composable
-fun MovieItem(movie: Movie) {
-    Column {
-        AsyncImage(
-            model = movie.posterUrl,
-            contentDescription = movie.title,
-            contentScale = ContentScale.Crop,
-            modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(2 / 3f)
-                    .clip(MaterialTheme.shapes.small)
-                    .background(MaterialTheme.colorScheme.primaryContainer),
-        )
-        Text(
-            text = movie.title,
-            style = MaterialTheme.typography.bodySmall,
-            modifier = Modifier.padding(8.dp),
-        )
-    }
+    HomeScreen()
 }
