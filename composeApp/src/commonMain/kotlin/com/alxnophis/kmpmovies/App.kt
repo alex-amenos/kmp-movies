@@ -6,7 +6,7 @@ import coil3.ImageLoader
 import coil3.compose.setSingletonImageLoaderFactory
 import coil3.request.crossfade
 import coil3.util.DebugLogger
-import com.alxnophis.kmpmovies.ui.screens.home.HomeScreen
+import com.alxnophis.kmpmovies.ui.screens.Navigation
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -20,5 +20,5 @@ fun App() {
             .logger(if (AppConfig.isDebug) DebugLogger() else null)
             .build()
     }
-    HomeScreen()
+    Navigation()
 }

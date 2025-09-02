@@ -21,7 +21,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.alxnophis.kmpmovies.Movie
-import com.alxnophis.kmpmovies.movies
 import com.alxnophis.kmpmovies.ui.screens.Screen
 import kmpmovies.composeapp.generated.resources.Res
 import kmpmovies.composeapp.generated.resources.back
@@ -31,8 +30,9 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun DetailScreen(
     modifier: Modifier = Modifier,
+    movie: Movie,
+    onBack: () -> Unit,
 ) {
-    val movie = movies.first()
     Screen(modifier = modifier) {
         Scaffold(
             topBar = {
@@ -40,7 +40,7 @@ fun DetailScreen(
                     title = { Text(movie.title) },
                     navigationIcon = {
                         IconButton(
-                            onClick = { },
+                            onClick = onBack,
                         ) {
                             Icon(
                                 imageVector = Icons.AutoMirrored.Default.ArrowBack,
