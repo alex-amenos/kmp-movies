@@ -12,15 +12,28 @@ import com.alxnophis.kmpmovies.movies
 import com.alxnophis.kmpmovies.ui.screens.detail.DetailScreen
 import com.alxnophis.kmpmovies.ui.screens.home.HomeScreen
 
+enum class AppScreen(
+    val route: String,
+) {
+    HOME("home"),
+    DETAIL("details/{${NavigationArguments.MOVIE_ID.value}}"),
+}
+
+enum class NavigationArguments(
+    val value: String,
+) {
+    MOVIE_ID("movieId"),
+}
+
 @Composable
 fun Navigation(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = "home",
+        startDestination = AppScreen.HOME.route,
         modifier = modifier,
     ) {
-        composable("home") {
+        composable(AppScreen.HOME.route) {
             HomeScreen(
                 onMovieClick = { movie ->
                     navController.navigate("details/${movie.id}")
@@ -28,13 +41,13 @@ fun Navigation(modifier: Modifier = Modifier) {
             )
         }
         composable(
-            route = "details/{movieId}",
-            arguments = listOf(navArgument("movieId") { type = NavType.IntType }),
+            route = AppScreen.DETAIL.route,
+            arguments = listOf(navArgument(NavigationArguments.MOVIE_ID.value) { type = NavType.IntType }),
         ) { backStackEntry: NavBackStackEntry ->
             val movieId =
                 backStackEntry
                     .savedStateHandle
-                    .get<Int>("movieId")
+                    .get<Int>(NavigationArguments.MOVIE_ID.value)
             DetailScreen(
                 movie = movies.first { it.id == movieId },
                 onBack = { navController.popBackStack() },
